@@ -1,25 +1,32 @@
-import pyautogui
-import random
-import time
-from config import BATTLE_BUTTON_COORDS, ACTION_DELAY
+import pyautogui  # Biblioteca para simular cliques e interações com a tela
+import time  # Biblioteca para criar pausas entre as ações
+import random  # Biblioteca para gerar valores aleatórios
+# Importa configurações de combate e intervalo de ação
+from config import COORDENADAS_BOTAO_COMBATE, ATRASO_ACAO
 
-# Função para iniciar uma batalha.
-
-
-def start_battle():
-    pyautogui.click(BATTLE_BUTTON_COORDS)
-    time.sleep(random.uniform(*ACTION_DELAY))
-
-# Função para usar uma habilidade durante a batalha.
+# Função para iniciar uma batalha no jogo
 
 
-def use_skill(skill_button_coords):
-    pyautogui.click(skill_button_coords)
-    time.sleep(random.uniform(*ACTION_DELAY))
+def iniciar_batalha():
+    # Clica nas coordenadas do botão de combate
+    pyautogui.click(COORDENADAS_BOTAO_COMBATE)
+    # Aguarda um intervalo aleatório para simular comportamento humano
+    time.sleep(random.uniform(*ATRASO_ACAO))
 
-# Função para fugir de uma batalha.
+# Função para usar uma habilidade durante a batalha
 
 
-def flee_battle():
-    pyautogui.click(BATTLE_BUTTON_COORDS)
-    time.sleep(random.uniform(*ACTION_DELAY))
+def usar_habilidade(coordenadas_habilidade):
+    # Clica nas coordenadas da habilidade escolhida
+    pyautogui.click(coordenadas_habilidade)
+    # Aguarda um intervalo aleatório para simular comportamento humano
+    time.sleep(random.uniform(*ATRASO_ACAO))
+
+# Função para fugir de uma batalha
+
+
+def fugir_batalha():
+    # Clica no botão para sair do combate
+    pyautogui.click(COORDENADAS_BOTAO_COMBATE)
+    # Aguarda um intervalo aleatório para simular comportamento humano
+    time.sleep(random.uniform(*ATRASO_ACAO))
