@@ -1,11 +1,11 @@
 import tkinter as tk
 import threading
 import time
-import pygetwindow as gw
 from vision import localizar_pokemon
+from combat import marca_alvo
+import pygetwindow as gw
 from database import salvar_rota, excluir_rota, listar_rotas, carregar_rota
 from movement import alternar_gravacao, reproduzir_rota_gravada, existe_rota_gravada, rota_gravada
-from combat import iniciar_batalha, usar_habilidade
 
 # Variáveis globais para controle do bot
 bot_ativo = False
@@ -57,11 +57,20 @@ def executar_bot():
             if movimentos:
                 print(f"Executando rota: {nome_rota}")
                 reproduzir_rota_gravada(lambda: bot_ativo, movimentos)
+
+                # Procura um Pokémon na tela usando uma imagem de template.
+                posicao_pokemon = localizar_pokemon(
+                    "C:/Users/ICARO/Desktop/PXG/pokemon_templates_vivo/")
+                if posicao_pokemon is not None:
+                    marca_alvo(posicao_pokemon)
+                else:
+                    print("Nenhum Pokémon encontrado após a rota.")
+
                 time.sleep(1)  # Pausa entre execuções de rotas
 
         print("Ciclo de rotas completo, reiniciando.")
-    print("Bot parou de executar.")
 
+    print("Bot parou de executar.")
 # Função para carregar todas as rotas para execução em sequência
 
 

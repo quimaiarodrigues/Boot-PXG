@@ -1,27 +1,23 @@
-# Importa funções de movimento
-from movement import mover_personagem, existe_rota_gravada, reproduzir_rota_gravada
-from vision import localizar_pokemon  # Função para detectar um Pokémon na tela
-from combat import iniciar_batalha, usar_habilidade  # Funções para combate
-
-# Função principal que coordena as ações do bot
+# Importa funções de outros arquivos para controlar o movimento, visão e combate.
+from vision import localizar_pokemon
 
 
-def principal():
+# Função principal que coordena as ações do bot.
+
+
+def main():
+    # Mensagem indicando que o bot começou a rodar.
     print("Iniciando o bot...")
 
-    # Loop que continua até o bot ser interrompido
+    # Loop principal.
     while True:
-        # Procura por um Pokémon na tela usando templates
+        
+        # Procura um Pokémon na tela usando uma imagem de template.
         posicao_pokemon = localizar_pokemon(
-            "C:/Users/ICARO/Desktop/PXG/resized_pokemon_templates/")
-
-        # Se um Pokémon for encontrado, o bot inicia o combate
+            "C:/Users/ICARO/Desktop/PXG/pokemon_templates_vivo/")
+        # Se um Pokémon for encontrado, inicia um combate.
         if posicao_pokemon:
             print("Pokémon encontrado, iniciando combate...")
-            iniciar_batalha()
-            # Exemplo de uso de habilidade em posição fixa
-            # usar_habilidade((400, 500))
         else:
-            # Caso contrário, o bot continua a explorar aleatoriamente
-            print("Nenhum Pokémon encontrado, movendo-se...")
-            mover_personagem(existe_rota_gravada)
+            # Se nenhum Pokémon for encontrado, o bot move o personagem para explorar.
+            print("Nenhum Pokémon encontrado, movendo...")
